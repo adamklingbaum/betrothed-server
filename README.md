@@ -144,7 +144,7 @@ Returns an event
 
 Updates an event
 
-- Multiple fields may be updated at a time
+- Multiple fields may be updated in one request
 
 #### Path parameters
 
@@ -236,7 +236,7 @@ Returns a guest, identified by `guestEmail`
 
 Updates a guest
 
-- Multiple fields may be updated in a single request
+- Multiple fields may be updated in one request
 - `rspvLastUpdated` is automatically generated at the time of an update
 
 #### Path parameters
