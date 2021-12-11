@@ -1,1 +1,1 @@
-module.exports.API_KEY = 'fill_me_in';
+module.exports.mongoURI = 'FILL_ME_IN';

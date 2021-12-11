@@ -1,6 +1,4 @@
-module.exports = {
-  couple: require('./couple'),
-  guest: require('./guest'),
-  event: require('./event'),
-  rsvp: require('./rsvp'),
-};
+const { Event } = require('./event');
+const { Guest } = require('./guest');
+
+module.exports = { Event, Guest };
