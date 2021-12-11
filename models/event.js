@@ -1,3 +1,1 @@
-module.exports = {
-  get: () => {},
-};
+const mongoose = require('mongoose');
