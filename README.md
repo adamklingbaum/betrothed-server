@@ -80,45 +80,46 @@ Returns an event
     "4": "#5337C9"
   },
   "guests": {
-    "johnson family": [
+    "Doe family": [
       {
         "guestId": 12,
         "firstName": "John",
         "lastName": "Doe",
-        "email": "local@domain.com",
+        "email": "one@domain.com",
         "rsvpStatus": "attending",
         "rvspLastUpdated": "2021-05-23T20:17:46.384Z",
         "rsvpNote": "I look forward to attending!",
-        "group": "joel family"
+        "group": "Doe family"
       },
       {
         "guestId": 13,
         "firstName": "Jane",
         "lastName": "Doe",
-        "email": "local@domain.com",
+        "email": "two@domain.com",
         "rsvpStatus": "not attending",
         "rvspLastUpdated": "2021-05-13T20:17:46.384Z",
         "rsvpNote": "I will not be attending your wedding!",
-        "group": "johnson family"
+        "group": "Doe family"
       }
     ],
-    "family friends": [
+    "Family friends": [
       {
         "guestId": 14,
         "firstName": "Ted",
         "lastName": "Smith",
-        "email": "local@domain.com",
+        "email": "three@domain.com",
         "rsvpStatus": "attending",
         "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
-        "rsvpNote": "I can't wait! Thanks for thinking of me."
+        "rsvpNote": "I can't wait! Thanks for thinking of me.",
+        "group": "Family friends"
       }
     ],
-    "individual": [
+    "Individual": [
       {
         "guestId": 15,
         "firstName": "Jack",
         "lastName": "White",
-        "email": "local@domain.com",
+        "email": "four@domain.com",
         "rsvpStatus": "attending",
         "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
         "rsvpNote": "I will be there on your special day!"
@@ -127,7 +128,7 @@ Returns an event
         "guestId": 16,
         "firstName": "Peter",
         "lastName": "Parker",
-        "email": "local@domain.com",
+        "email": "five@domain.com",
         "rsvpStatus": "pending",
         "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
         "rsvpNote": ""
