@@ -41,7 +41,7 @@ router.post('/events/:eventId/guests', async (req, res) => {
     }
     eventResult.guests.push(guest);
     eventResult.markModified('guests');
-    const guestResult = await eventResult.save();
+    await eventResult.save();
     res.status(201).json({ createdGuest: guest });
   } catch (error) {
     res.status(400).send(error);

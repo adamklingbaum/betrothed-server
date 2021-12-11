@@ -24,7 +24,6 @@ const guestSchema = new mongoose.Schema({
   rsvpNote: {
     type: 'String',
     required: false,
-    default: '',
   },
   group: {
     type: 'String',
