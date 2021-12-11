@@ -248,12 +248,14 @@ Updates a guest
 
 #### Query parameters
 
-| Parameter   | Type   | Required | Default | Description                                                                     |
-| :---------- | :----- | :------- | :------ | :------------------------------------------------------------------------------ |
-| {firstName} | string | yes      | none    | guest first name                                                                |
-| {lastName}  | string | yes      | none    | guest last name                                                                 |
-| {email}     | string | yes      | none    | guest email address; will be the default email to which communications are sent |
-| {group}     | string | no       | none    | name of group                                                                   |
+| Parameter    | Type   | Required | Default | Description                                                                     |
+| :----------- | :----- | :------- | :------ | :------------------------------------------------------------------------------ |
+| {firstName}  | string | yes      | none    | guest first name                                                                |
+| {lastName}   | string | yes      | none    | guest last name                                                                 |
+| {email}      | string | yes      | none    | guest email address; will be the default email to which communications are sent |
+| {group}      | string | no       | none    | name of group                                                                   |
+| {rsvpStatus} | string | no       | none    | guest's rsvp status; one of "attending", "not attending" and "pending"          |
+| {rsvpNote}   | string | no       | none    | guest's personalized rsvp note                                                  |
 
 ---
 
