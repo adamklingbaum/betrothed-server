@@ -29,6 +29,7 @@ const guestSchema = new mongoose.Schema({
   group: {
     type: 'String',
     required: false,
+    default: 'Individual',
   },
 });
 

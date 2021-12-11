@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { guestSchema } = require('./guest');
-const states = require('./state');
+const states = require('./us_states');
 
 const eventSchema = new mongoose.Schema({
   coupleName1: {
@@ -42,7 +42,7 @@ const eventSchema = new mongoose.Schema({
     required: true,
     enum: states,
   },
-  zipCode: {
+  zip: {
     type: String,
     required: true,
     match: /^[0-9]{5}(?:-[0-9]{4})?$/,
@@ -59,7 +59,7 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  dashBoardPhotoURL: {
+  dashboardPhotoURL: {
     type: String,
     required: false,
     match:

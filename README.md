@@ -6,31 +6,59 @@ Creates an event
 
 #### Body parameters
 
-| Parameter      | Type                                      | Required | Default | Description                                                                                                     |
-| :------------- | :---------------------------------------- | :------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
-| coupleName1    | string                                    | yes      | none    | name of an individual in the couple                                                                             |
-| coupleName2    | string                                    | yes      | none    | name of the other individual in the couple                                                                      |
-| email          | string                                    | yes      | none    | couple's designated contact email                                                                               |
-| dateTime       | string (ISOString)                        | yes      | none    | date (with time) of the event                                                                                   |
-| venue          | string                                    | yes      | none    | name of the event venue                                                                                         |
-| addressLine1   | string                                    | yes      | none    | street address of the event venue                                                                               |
-| addressLine2   | string                                    | no       | none    | unit/apt/suite/other as applicable                                                                              |
-| city           | string                                    | yes      | none    | city of the event                                                                                               |
-| state          | string (official 2-letter abbreviation)   | yes      | none    | state of the event                                                                                              |
-| zip            | string                                    | yes      | none    | zip code of the event                                                                                           |
-| guestLimit     | integer                                   | no       | none    | limit on guests to the event                                                                                    |
-| rsvpDeadline   | string (ISOString)                        | yes      | none    | deadline for a guest to RSVP                                                                                    |
-| inviteMessage  | string                                    | yes      | none    | customized invitation message sent to guests                                                                    |
-| dashBoardPhoto | string                                    | no       | none    | photo to display on couple's dashboard                                                                          |
-| bannerPhoto    | string                                    | no       | none    | main photo to display on invitations                                                                            |
-| galleryPhotos  | object { [number]: [url_as_string] }      | no       | none    | photos to display in carousel on invitations; keys are photo numbers and values are public URLs as strings      |
-| colors         | object { [number]: [hex_code_as_string] } | no       | none    | custom invitation color scheme picked by the couple; keys are color numbers and values are hex codes as strings |
+| Parameter         | Type                                      | Required | Default | Description                                                                                                     |
+| :---------------- | :---------------------------------------- | :------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
+| coupleName1       | string                                    | yes      | none    | name of an individual in the couple                                                                             |
+| coupleName2       | string                                    | yes      | none    | name of the other individual in the couple                                                                      |
+| email             | string                                    | yes      | none    | couple's designated contact email                                                                               |
+| date              | string (ISOString)                        | yes      | none    | date (with time) of the event                                                                                   |
+| venue             | string                                    | yes      | none    | name of the event venue                                                                                         |
+| addressLine1      | string                                    | yes      | none    | street address of the event venue                                                                               |
+| addressLine2      | string                                    | no       | none    | unit/apt/suite/other as applicable                                                                              |
+| city              | string                                    | yes      | none    | city of the event                                                                                               |
+| state             | string (official 2-letter abbreviation)   | yes      | none    | state of the event                                                                                              |
+| zip               | string                                    | yes      | none    | zip code of the event                                                                                           |
+| guestLimit        | integer                                   | no       | none    | limit on guests to the event                                                                                    |
+| rsvpDeadline      | string (ISOString)                        | yes      | none    | deadline for a guest to RSVP                                                                                    |
+| inviteMessage     | string                                    | yes      | none    | customized invitation message sent to guests                                                                    |
+| dashboardPhotoURL | string                                    | no       | none    | photo to display on couple's dashboard                                                                          |
+| bannerPhotoURL    | string                                    | no       | none    | main photo to display on invitations                                                                            |
+| galleryPhotos     | object { [number]: [url_as_string] }      | no       | none    | photos to display in carousel on invitations; keys are photo numbers and values are public URLs as strings      |
+| colors            | object { [number]: [hex_code_as_string] } | no       | none    | custom invitation color scheme picked by the couple; keys are color numbers and values are hex codes as strings |
 
 #### Sample response
 
 ```json
 {
-  "eventId": 14
+  "createdEvent": {
+    "coupleName1": "Jack",
+    "coupleName2": "Jill",
+    "email": "jack.jill@domain.com",
+    "date": "2021-08-05T00:00:00.000Z",
+    "venue": "The Ballroom",
+    "addressLine1": "123 Ballroom Cres",
+    "addressLine2": "The Grand Room",
+    "city": "Austin",
+    "state": "TX",
+    "zip": "10045",
+    "guestLimit": 150,
+    "rsvpDeadline": "2021-08-25T00:00:00.000Z",
+    "inviteMessage": "Join us in celebrating our special day.",
+    "dashboardPhotoURL": "shorturl.at/oJW34",
+    "bannerPhotoURL": "shorturl.at/oJW34",
+    "galleryPhotos": {
+      "1": "shorturl.at/oJW34",
+      "2": "shorturl.at/oJW34"
+    },
+    "colors": {
+      "1": "#FAFAFA",
+      "2": "#AFAFAF",
+      "3": "#55555C"
+    },
+    "_id": "61b523199bf9d1612132c109",
+    "guests": [],
+    "__v": 0
+  }
 }
 ```
 
@@ -60,14 +88,14 @@ Returns an event
   "addressLine2": "Room 1104",
   "city": "Austin",
   "state": "TX",
-  "zipCode": "78701",
+  "zip": "78701",
   "daysToEvent": 15,
   "guestLimit": 100,
   "rsvpDeadline": "2021-12-01T20:17:46.384Z",
   "daysToRSVPDeadline": 12,
   "inviteMessage": "Please join us for our special day",
-  "dashboardPhoto": "shorturl.at/oJW34",
-  "bannerPhoto": "shorturl.at/oJW34",
+  "dashboardPhotoURL": "shorturl.at/oJW34",
+  "bannerPhotoURL": "shorturl.at/oJW34",
   "galleryPhotos": {
     "1": "shorturl.at/oJW34",
     "2": "shorturl.at/oJW34",
@@ -122,7 +150,8 @@ Returns an event
         "email": "four@domain.com",
         "rsvpStatus": "attending",
         "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
-        "rsvpNote": "I will be there on your special day!"
+        "rsvpNote": "I will be there on your special day!",
+        "group" "Individual"
       },
       {
         "guestId": 16,
@@ -131,7 +160,8 @@ Returns an event
         "email": "five@domain.com",
         "rsvpStatus": "pending",
         "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
-        "rsvpNote": ""
+        "rsvpNote": "",
+        "group" "Individual"
       }
     ]
   }
@@ -154,25 +184,25 @@ Updates an event
 
 #### Body parameters
 
-| Parameter        | Type                                      | Required | Default | Description                                                                                                     |
-| :--------------- | :---------------------------------------- | :------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
-| {coupleName1}    | string                                    | no       | none    | name of an individual in the couple                                                                             |
-| {coupleName2}    | string                                    | no       | none    | name of the other individual in the couple                                                                      |
-| {email}          | string                                    | no       | none    | couple's designated contact email                                                                               |
-| {dateTime}       | string (ISOString)                        | no       | none    | date (with time) of the event                                                                                   |
-| {venue}          | string                                    | no       | none    | name of the event venue                                                                                         |
-| {addressLine1}   | string                                    | no       | none    | street address                                                                                                  |
-| {addressLine2}   | string                                    | no       | none    | unit/apt/suite/other as applicable                                                                              |
-| {city}           | string                                    | no       | none    | city of the event                                                                                               |
-| {state}          | string (official 2-letter abbreviation)   | no       | none    | state of the event                                                                                              |
-| {zip}            | string                                    | no       | none    | zip code of the event                                                                                           |
-| {guestLimit}     | integer                                   | no       | none    | limit on guests to the event                                                                                    |
-| {rsvpDeadline}   | string (ISOString)                        | no       | none    | deadline for a guest to RSVP                                                                                    |
-| {inviteMessage}  | string                                    | no       | none    | customized invitation message sent to guests                                                                    |
-| {dashBoardPhoto} | string                                    | no       | none    | photo to display on couple's dashboard                                                                          |
-| {bannerPhoto}    | string                                    | no       | none    | main photo to display on invitations                                                                            |
-| {galleryPhotos}  | object { [number]: [url_as_string] }      | no       | none    | photos to display in carousel on invitations; keys are photo numbers and values are public URLs as strings      |
-| {colors}         | object { [number]: [hex_code_as_string] } | no       | none    | custom invitation color scheme picked by the couple; keys are color numbers and values are hex codes as strings |
+| Parameter           | Type                                      | Required | Default | Description                                                                                                     |
+| :------------------ | :---------------------------------------- | :------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
+| {coupleName1}       | string                                    | no       | none    | name of an individual in the couple                                                                             |
+| {coupleName2}       | string                                    | no       | none    | name of the other individual in the couple                                                                      |
+| {email}             | string                                    | no       | none    | couple's designated contact email                                                                               |
+| {date3}             | string (ISOString)                        | no       | none    | date (with time) of the event                                                                                   |
+| {venue}             | string                                    | no       | none    | name of the event venue                                                                                         |
+| {addressLine1}      | string                                    | no       | none    | street address                                                                                                  |
+| {addressLine2}      | string                                    | no       | none    | unit/apt/suite/other as applicable                                                                              |
+| {city}              | string                                    | no       | none    | city of the event                                                                                               |
+| {state}             | string (official 2-letter abbreviation)   | no       | none    | state of the event                                                                                              |
+| {zip}               | string                                    | no       | none    | zip code of the event                                                                                           |
+| {guestLimit}        | integer                                   | no       | none    | limit on guests to the event                                                                                    |
+| {rsvpDeadline}      | string (ISOString)                        | no       | none    | deadline for a guest to RSVP                                                                                    |
+| {inviteMessage}     | string                                    | no       | none    | customized invitation message sent to guests                                                                    |
+| {dashboardPhotoURL} | string                                    | no       | none    | photo to display on couple's dashboard                                                                          |
+| {bannerPhotoURL}    | string                                    | no       | none    | main photo to display on invitations                                                                            |
+| {galleryPhotos}     | object { [number]: [url_as_string] }      | no       | none    | photos to display in carousel on invitations; keys are photo numbers and values are public URLs as strings      |
+| {colors}            | object { [number]: [hex_code_as_string] } | no       | none    | custom invitation color scheme picked by the couple; keys are color numbers and values are hex codes as strings |
 
 ---
 
@@ -199,7 +229,16 @@ Adds a guest to an event
 
 ```json
 {
-  "guestId": 34
+  "createdGuest": {
+    "firstName": "Guest",
+    "lastName": "One",
+    "email": "guest.one@domain.com",
+    "rsvpStatus": "pending",
+    "rsvpNote": "",
+    "group": "One Family",
+    "_id": "61b52491df62033324816307",
+    "__v": 0
+  }
 }
 ```
 
