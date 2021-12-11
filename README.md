@@ -81,9 +81,9 @@ Returns an event
     "johnson family": [
       {
         "guestId": 12,
-        "firstName": "billy",
-        "lastName": "johnson",
-        "email": "billy.joel@gmail.com",
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "local@domain.com",
         "rsvpStatus": "attending",
         "rvspLastUpdated": "2021-05-23T20:17:46.384Z",
         "rsvpNote": "I look forward to attending!",
@@ -91,9 +91,9 @@ Returns an event
       },
       {
         "guestId": 13,
-        "firstName": "adam",
-        "lastName": "johnson",
-        "email": "adam.johnson@pinterext.com",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "local@domain.com",
         "rsvpStatus": "not attending",
         "rvspLastUpdated": "2021-05-13T20:17:46.384Z",
         "rsvpNote": "I will not be attending your wedding!",
@@ -103,9 +103,9 @@ Returns an event
     "family friends": [
       {
         "guestId": 14,
-        "firstName": "bruce",
-        "lastName": "ragsdale",
-        "email": "bruce.ragsdale@gmail.com",
+        "firstName": "Ted",
+        "lastName": "Smith",
+        "email": "local@domain.com",
         "rsvpStatus": "attending",
         "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
         "rsvpNote": "I can't wait! Thanks for thinking of me.",
@@ -115,9 +115,9 @@ Returns an event
     "individual": [
       {
         "guestId": 15,
-        "firstName": "annie",
-        "lastName": "johnston",
-        "email": "annie.j@gmail.com",
+        "firstName": "Jack",
+        "lastName": "White",
+        "email": "local@domain.com",
         "rsvpStatus": "attending",
         "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
         "rsvpNote": "I will be there on your special day!",
@@ -125,9 +125,9 @@ Returns an event
       },
       {
         "guestId": 16,
-        "firstName": "yachao",
-        "lastName": "fan",
-        "email": "yachao.fan@gmail.com",
+        "firstName": "Peter",
+        "lastName": "Parker",
+        "email": "local@domain.com",
         "rsvpStatus": "pending",
         "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
         "rsvpNote": "",
@@ -222,7 +222,7 @@ Returns a guest, identified by `guestEmail`
   "guestId": 12,
   "firstName": "billy",
   "lastName": "joel",
-  "email": "billy.joel@gmail.com",
+  "email": "local@domain.com",
   "group": "joel family",
   "rsvpStatus": "attending",
   "rvspLastUpdated": "2021-05-23",
