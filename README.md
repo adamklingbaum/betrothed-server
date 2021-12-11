@@ -10,6 +10,7 @@ Creates an event
 | :------------- | :---------------------------------------- | :------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
 | coupleName1    | string                                    | yes      | none    | name of an individual in the couple                                                                             |
 | coupleName2    | string                                    | yes      | none    | name of the other individual in the couple                                                                      |
+| email          | string                                    | yes      | none    | couple's designated contact email                                                                               |
 | dateTime       | string (ISOString)                        | yes      | none    | date (with time) of the event                                                                                   |
 | venue          | string                                    | yes      | none    | name of the event venue                                                                                         |
 | addressLine1   | string                                    | yes      | none    | street address of the event venue                                                                               |
@@ -52,6 +53,7 @@ Returns an event
   "eventId": 12,
   "coupleName1": "Ted Baker",
   "coupleName2": "Yves St-Laurent",
+  "email": "couple@email.com",
   "date": "2022-08-12T20:17:46.384Z",
   "venue": "Hack Reactor Auditorium",
   "addressLine1": "119 Nueces St",
@@ -108,8 +110,7 @@ Returns an event
         "email": "local@domain.com",
         "rsvpStatus": "attending",
         "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
-        "rsvpNote": "I can't wait! Thanks for thinking of me.",
-        "group": "family friends"
+        "rsvpNote": "I can't wait! Thanks for thinking of me."
       }
     ],
     "individual": [
@@ -120,8 +121,7 @@ Returns an event
         "email": "local@domain.com",
         "rsvpStatus": "attending",
         "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
-        "rsvpNote": "I will be there on your special day!",
-        "group": ""
+        "rsvpNote": "I will be there on your special day!"
       },
       {
         "guestId": 16,
@@ -130,8 +130,7 @@ Returns an event
         "email": "local@domain.com",
         "rsvpStatus": "pending",
         "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
-        "rsvpNote": "",
-        "group": ""
+        "rsvpNote": ""
       }
     ]
   }
@@ -158,6 +157,7 @@ Updates an event
 | :--------------- | :---------------------------------------- | :------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
 | {coupleName1}    | string                                    | no       | none    | name of an individual in the couple                                                                             |
 | {coupleName2}    | string                                    | no       | none    | name of the other individual in the couple                                                                      |
+| {email}          | string                                    | no       | none    | couple's designated contact email                                                                               |
 | {dateTime}       | string (ISOString)                        | no       | none    | date (with time) of the event                                                                                   |
 | {venue}          | string                                    | no       | none    | name of the event venue                                                                                         |
 | {addressLine1}   | string                                    | no       | none    | street address                                                                                                  |
