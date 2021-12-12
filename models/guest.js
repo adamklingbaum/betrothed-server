@@ -32,15 +32,5 @@ const guestSchema = new mongoose.Schema({
   },
 });
 
-guestSchema.pre('findByIdAndUpdate', (next) => {
-  this.options.runValidators = true;
-  next();
-});
-
-guestSchema.pre('findOneAndUpdate', (next) => {
-  this.options.runValidators = true;
-  next();
-});
-
 module.exports.Guest = mongoose.model('Guest', guestSchema);
 module.exports.guestSchema = guestSchema;

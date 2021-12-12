@@ -89,14 +89,4 @@ const eventSchema = new mongoose.Schema({
   },
 });
 
-eventSchema.pre('findByIdAndUpdate', (next) => {
-  this.options.runValidators = true;
-  next();
-});
-
-eventSchema.pre('findOneAndUpdate', (next) => {
-  this.options.runValidators = true;
-  next();
-});
-
 module.exports.Event = mongoose.model('Event', eventSchema);
