@@ -32,5 +32,5 @@ const guestSchema = new mongoose.Schema({
   },
 });
 
-module.exports.Guest = mongoose.model('Guests', guestSchema);
+module.exports.Guest = mongoose.model('Guest', guestSchema);
 module.exports.guestSchema = guestSchema;

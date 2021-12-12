@@ -16,12 +16,11 @@ router.post('/events', async (req, res) => {
 router.get('/events/:eventId', async (req, res) => {
   const { eventId } = req.params;
   try {
-    const result = await Event.findById(eventId).lean();
+    const result = await Event.findById(eventId).populate('guests').lean();
     const { guests } = result;
     const groupedGuests = {};
     guests.forEach((guest) => {
-      guest.group = guest.group || 'Individual';
-      groupedGuests[guest.group] = groupedGuests[guest.Group] || [];
+      groupedGuests[guest.group] = groupedGuests[guest.group] || [];
       groupedGuests[guest.group].push(guest);
     });
     result.guests = groupedGuests;
