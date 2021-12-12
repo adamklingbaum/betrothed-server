@@ -34,13 +34,14 @@ router.get('/events/:eventId', async (req, res) => {
 router.post('/events/:eventId/guests', async (req, res) => {
   const { eventId } = req.params;
   const guest = new Guest(req.body);
+
   try {
+    const savedGuest = await guest.save();
     const eventResult = await Event.findById(eventId);
     if (!eventResult) {
       return res.status(404).send('Event was not found');
     }
-    eventResult.guests.push(guest);
-    eventResult.markModified('guests');
+    eventResult.guests.push(savedGuest._id);
     await eventResult.save();
     res.status(201).json({ createdGuest: guest });
   } catch (error) {
@@ -48,12 +49,11 @@ router.post('/events/:eventId/guests', async (req, res) => {
   }
 });
 
-router.get('/events/:eventId/guests/:guestEmail', async (req, res) => {
+/* router.get('/events/:eventId/guests/:guestEmail', async (req, res) => {
   console.log('recevied');
   const { eventId, guestEmail } = req.params;
   try {
-    const result = await Event.find({
-      _id: eventId}
+    const result = await Event.findById(eventId).populate()
       'guests.email': guestEmail,
     });
     console.log(result);
@@ -62,6 +62,6 @@ router.get('/events/:eventId/guests/:guestEmail', async (req, res) => {
     console.log(error);
     res.status(404).send(error);
   }
-});
+}); */
 
 module.exports = router;
