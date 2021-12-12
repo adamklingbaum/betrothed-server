@@ -30,6 +30,18 @@ router.get('/events/:eventId', async (req, res) => {
   }
 });
 
+router.put('/events/:eventId', async (req, res) => {
+  const { eventId } = req.params;
+  try {
+    const event = await Event.findById(eventId);
+    if (!event) return res.status(404).send('Event not found');
+    await Event.findByIdAndUpdate(eventId, req.query);
+    res.status(204).send();
+  } catch (error) {
+    res.status(404).send(error);
+  }
+});
+
 router.post('/events/:eventId/guests', async (req, res) => {
   const { eventId } = req.params;
   const guest = new Guest(req.body);
