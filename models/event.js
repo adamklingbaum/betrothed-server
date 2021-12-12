@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { guestSchema } = require('./guest');
 const states = require('./us_states');
 
 const eventSchema = new mongoose.Schema({
@@ -86,7 +85,7 @@ const eventSchema = new mongoose.Schema({
     required: false,
   },
   guests: {
-    type: [guestSchema],
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Guest' }],
   },
 });
 
