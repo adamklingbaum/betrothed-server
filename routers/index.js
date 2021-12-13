@@ -17,13 +17,7 @@ router.get('/events/:eventId', async (req, res) => {
   const { eventId } = req.params;
   try {
     const result = await Event.findById(eventId).populate('guests');
-    /* const { guests } = result;
-    const groupedGuests = {};
-    guests.forEach((guest) => {
-      groupedGuests[guest.group] = groupedGuests[guest.group] || [];
-      groupedGuests[guest.group].push(guest);
-    });
-    result.guests = groupedGuests; */
+    if (!result) return res.status(404).send('Event not found');
     res.status(200).send(result);
   } catch (error) {
     res.status(404).send('Event not found');
@@ -50,9 +44,8 @@ router.post('/events/:eventId/guests', async (req, res) => {
     if (!event) {
       return res.status(404).send('Event was not found');
     }
-
     const guestCheck = await Guest.findOne({
-      event: event._id,
+      event: eventId,
       email: req.body.email,
     });
     if (guestCheck) {
@@ -60,8 +53,7 @@ router.post('/events/:eventId/guests', async (req, res) => {
         .status(400)
         .send('A guest with this email already exists for this event');
     }
-
-    const guest = new Guest({ ...req.body, event: event._id });
+    const guest = new Guest({ ...req.body, event: eventId });
     await guest.save();
     res.status(201).json({ createdGuest: guest });
   } catch (error) {
@@ -69,19 +61,20 @@ router.post('/events/:eventId/guests', async (req, res) => {
   }
 });
 
-/* router.get('/events/:eventId/guests/:guestEmail', async (req, res) => {
-  console.log('recevied');
-  const { eventId, guestEmail } = req.params;
+router.get('/events/:eventId/guests', async (req, res) => {
+  const { eventId } = req.params;
+  const { email } = req.query;
   try {
-    const result = await Event.findById(eventId).populate()
-      'guests.email': guestEmail,
-    });
-    console.log(result);
-    res.status(200).send(result);
+    const event = await Event.findById(eventId);
+    if (!event) {
+      return res.status(404).send('Event was not found');
+    }
+    const guest = await Guest.findOne({ event: eventId, email });
+    if (!guest) return res.status(404).send('Guest not found');
+    res.status(200).send(guest);
   } catch (error) {
-    console.log(error);
     res.status(404).send(error);
   }
-}); */
+});
 
 module.exports = router;
