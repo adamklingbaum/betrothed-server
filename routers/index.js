@@ -46,12 +46,22 @@ router.post('/events/:eventId/guests', async (req, res) => {
   const { eventId } = req.params;
 
   try {
-    const eventResult = await Event.findById(eventId);
-    if (!eventResult) {
+    const event = await Event.findById(eventId);
+    if (!event) {
       return res.status(404).send('Event was not found');
     }
-    const guest = new Guest(req.body);
-    guest.event = eventResult._id;
+
+    const guestCheck = await Guest.findOne({
+      event: event._id,
+      email: req.body.email,
+    });
+    if (guestCheck) {
+      return res
+        .status(400)
+        .send('A guest with this email already exists for this event');
+    }
+
+    const guest = new Guest({ ...req.body, event: event._id });
     await guest.save();
     res.status(201).json({ createdGuest: guest });
   } catch (error) {
