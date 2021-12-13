@@ -1,6 +1,12 @@
 # betrothed API
 
+### View example requests in [Postman](https://www.postman.com/)
+
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/91f5e1d2d4de33d70d36?action=collection%2Fimport)
+
+```
+Postman instructions to come...
+```
 
 ### `POST` /events
 
