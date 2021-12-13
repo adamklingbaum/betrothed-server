@@ -234,14 +234,16 @@ Returns a guest, identified by `email`
 
 ```json
 {
-  "_id": "61b79ef2660830696a8985bd",
+  "_id": "61b7b1edda2ddaf0d73c5acc",
   "firstName": "Guest",
-  "lastName": "One",
-  "email": "guest_one@domain.com",
-  "rsvpStatus": "pending",
-  "group": "One Family",
+  "lastName": "Four",
+  "email": "guest_four@domain.com",
+  "rsvpStatus": "attending",
+  "group": "Four Family",
   "event": "61b79b9e0ac02dbe3e12fd1b",
-  "__v": 0
+  "__v": 0,
+  "rsvpLastUpdated": "2021-12-13T20:50:25.986Z",
+  "rsvpNote": "Thanks for the invite! I'll be there."
 }
 ```
 
