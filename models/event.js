@@ -79,14 +79,16 @@ const eventSchema = new mongoose.Schema(
           /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi,
       },
       required: false,
+      default: {},
     },
     colors: {
       type: Map,
       of: { type: String, match: /^#([0-9a-f]{6}|[0-9a-f]{3})$/i },
       required: false,
+      default: {},
     },
   },
-  { toJSON: { virtuals: true }, toObject: { virtuals: true } }
+  { toJSON: { virtuals: true }, toObject: { virtuals: true }, id: false }
 );
 
 eventSchema.virtual('guests', {
