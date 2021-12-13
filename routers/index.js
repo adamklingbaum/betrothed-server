@@ -34,10 +34,14 @@ router.get('/events/:eventId', async (req, res) => {
 
 router.put('/events/:eventId', async (req, res) => {
   const { eventId } = req.params;
+  const update = req.query;
   try {
     const event = await Event.findById(eventId);
-    if (!event) return res.status(404).send('Event not found');
-    await Event.findByIdAndUpdate(eventId, req.query, { runValidators: true });
+    if (!event) return res.status(404).send('Event was not found');
+    Object.keys(update).forEach((prop) => {
+      event[prop] = update[prop];
+    });
+    await event.save();
     res.status(204).send();
   } catch (error) {
     res.status(404).send(error);
