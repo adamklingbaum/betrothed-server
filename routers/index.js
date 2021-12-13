@@ -4,8 +4,15 @@ const { Event, Guest } = require('../models');
 const router = express.Router();
 
 router.post('/events', async (req, res) => {
-  const event = new Event(req.body);
+  const { email } = req.body;
   try {
+    const search = await Event.findOne({ email });
+    if (search) {
+      return res
+        .status(400)
+        .send('An event already with this email already exists');
+    }
+    const event = new Event(req.body);
     const result = await event.save();
     res.status(201).json({ createdEvent: result });
   } catch (error) {
@@ -36,7 +43,7 @@ router.get('/events/:eventId', async (req, res) => {
 
 router.put('/events/:eventId', async (req, res) => {
   const { eventId } = req.params;
-  const update = req.query;
+  const update = req.body;
   try {
     const event = await Event.findById(eventId);
     if (!event) {
@@ -97,7 +104,7 @@ router.get('/events/:eventId/guests', async (req, res) => {
 
 router.put('/events/:eventId/guests/:guestId', async (req, res) => {
   const { eventId, guestId } = req.params;
-  const update = req.query;
+  const update = req.body;
   try {
     const event = await Event.findById(eventId);
     if (!event) {
@@ -109,6 +116,9 @@ router.put('/events/:eventId/guests/:guestId', async (req, res) => {
     }
     Object.keys(update).forEach((prop) => {
       guest[prop] = update[prop];
+      if (prop === 'rsvpStatus' || prop === 'rsvpNote') {
+        guest.rsvpLastUpdated = Date.now();
+      }
     });
     await guest.save();
     res.status(204).send();

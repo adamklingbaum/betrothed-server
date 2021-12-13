@@ -1,5 +1,7 @@
 # betrothed API
 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/91f5e1d2d4de33d70d36?action=collection%2Fimport)
+
 ### `POST` /events
 
 Creates an event
@@ -31,32 +33,30 @@ Creates an event
 ```json
 {
   "createdEvent": {
-    "coupleName1": "Jack",
-    "coupleName2": "Jill",
-    "email": "jack.jill@domain.com",
-    "date": "2021-08-05T00:00:00.000Z",
-    "venue": "The Ballroom",
-    "addressLine1": "123 Ballroom Cres",
-    "addressLine2": "The Grand Room",
+    "coupleName1": "Ford",
+    "coupleName2": "Ferrari",
+    "email": "ford_ferrari_wedding@domain.com",
+    "date": "2022-12-13T00:00:00.000Z",
+    "venue": "The Big Venue",
+    "addressLine1": "123 Big Venue St.",
+    "addressLine2": "Suite 12",
     "city": "Austin",
     "state": "TX",
-    "zip": "10045",
-    "guestLimit": 150,
-    "rsvpDeadline": "2021-08-25T00:00:00.000Z",
-    "inviteMessage": "Join us in celebrating our special day.",
-    "dashboardPhotoURL": "shorturl.at/oJW34",
-    "bannerPhotoURL": "shorturl.at/oJW34",
+    "zip": "12345",
+    "guestLimit": 100,
+    "rsvpDeadline": "2022-06-13T00:00:00.000Z",
+    "inviteMessage": "Please join us in celebrating our new life together.",
+    "dashboardPhotoURL": "shorturl.at/tuHZ3",
+    "bannerPhotoURL": "shorturl.at/tuHZ3",
     "galleryPhotos": {
-      "1": "shorturl.at/oJW34",
-      "2": "shorturl.at/oJW34"
+      "1": "shorturl.at/tuHZ3",
+      "2": "shorturl.at/tuHZ3"
     },
     "colors": {
-      "1": "#FAFAFA",
-      "2": "#AFAFAF",
-      "3": "#55555C"
+      "1": "#FFFFFF",
+      "2": "#000000"
     },
-    "_id": "61b523199bf9d1612132c109",
-    "guests": [],
+    "_id": "61b79b9e0ac02dbe3e12fd1b",
     "__v": 0
   }
 }
@@ -78,90 +78,54 @@ Returns an event
 
 ```json
 {
-  "eventId": 12,
-  "coupleName1": "Ted Baker",
-  "coupleName2": "Yves St-Laurent",
-  "email": "couple@email.com",
-  "date": "2022-08-12T20:17:46.384Z",
-  "venue": "Hack Reactor Auditorium",
-  "addressLine1": "119 Nueces St",
-  "addressLine2": "Room 1104",
+  "_id": "61b79b9e0ac02dbe3e12fd1b",
+  "coupleName1": "Ford",
+  "coupleName2": "Ferrari",
+  "email": "ford_ferrari_wedding@domain.com",
+  "date": "2022-12-13T00:00:00.000Z",
+  "venue": "The Big Venue",
+  "addressLine1": "123 Big Venue St.",
+  "addressLine2": "Suite 12",
   "city": "Austin",
   "state": "TX",
-  "zip": "78701",
-  "daysToEvent": 15,
+  "zip": "12345",
   "guestLimit": 100,
-  "rsvpDeadline": "2021-12-01T20:17:46.384Z",
-  "daysToRSVPDeadline": 12,
-  "inviteMessage": "Please join us for our special day",
-  "dashboardPhotoURL": "shorturl.at/oJW34",
-  "bannerPhotoURL": "shorturl.at/oJW34",
+  "rsvpDeadline": "2022-06-13T00:00:00.000Z",
+  "inviteMessage": "Please join us in celebrating our new life together.",
+  "dashboardPhotoURL": "shorturl.at/tuHZ3",
+  "bannerPhotoURL": "shorturl.at/tuHZ3",
   "galleryPhotos": {
-    "1": "shorturl.at/oJW34",
-    "2": "shorturl.at/oJW34",
-    "3": "shorturl.at/oJW34"
+    "1": "shorturl.at/tuHZ3",
+    "2": "shorturl.at/tuHZ3"
   },
   "colors": {
-    "1": "#F0DA32",
-    "2": "#87B3BF",
-    "3": "#6E4AFF",
-    "4": "#5337C9"
+    "1": "#FFFFFF",
+    "2": "#000000"
   },
+  "__v": 0,
   "guests": {
-    "Doe family": [
+    "One Family": [
       {
-        "guestId": 12,
-        "firstName": "John",
-        "lastName": "Doe",
-        "email": "one@domain.com",
-        "rsvpStatus": "attending",
-        "rvspLastUpdated": "2021-05-23T20:17:46.384Z",
-        "rsvpNote": "I look forward to attending!",
-        "group": "Doe family"
-      },
-      {
-        "guestId": 13,
-        "firstName": "Jane",
-        "lastName": "Doe",
-        "email": "two@domain.com",
-        "rsvpStatus": "not attending",
-        "rvspLastUpdated": "2021-05-13T20:17:46.384Z",
-        "rsvpNote": "I will not be attending your wedding!",
-        "group": "Doe family"
-      }
-    ],
-    "Family friends": [
-      {
-        "guestId": 14,
-        "firstName": "Ted",
-        "lastName": "Smith",
-        "email": "three@domain.com",
-        "rsvpStatus": "attending",
-        "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
-        "rsvpNote": "I can't wait! Thanks for thinking of me.",
-        "group": "Family friends"
+        "_id": "61b79ef2660830696a8985bd",
+        "firstName": "Guest",
+        "lastName": "One",
+        "email": "guest_one@domain.com",
+        "rsvpStatus": "pending",
+        "group": "One Family",
+        "event": "61b79b9e0ac02dbe3e12fd1b",
+        "__v": 0
       }
     ],
     "Individual": [
       {
-        "guestId": 15,
-        "firstName": "Jack",
-        "lastName": "White",
-        "email": "four@domain.com",
-        "rsvpStatus": "attending",
-        "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
-        "rsvpNote": "I will be there on your special day!",
-        "group" "Individual"
-      },
-      {
-        "guestId": 16,
-        "firstName": "Peter",
-        "lastName": "Parker",
-        "email": "five@domain.com",
+        "_id": "61b79f4b660830696a8985c3",
+        "firstName": "Guest",
+        "lastName": "Two",
+        "email": "guest_two@domain.com",
         "rsvpStatus": "pending",
-        "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
-        "rsvpNote": "",
-        "group" "Individual"
+        "group": "Individual",
+        "event": "61b79b9e0ac02dbe3e12fd1b",
+        "__v": 0
       }
     ]
   }
@@ -232,11 +196,11 @@ Adds a guest to an event
   "createdGuest": {
     "firstName": "Guest",
     "lastName": "One",
-    "email": "guest.one@domain.com",
+    "email": "guest_one@domain.com",
     "rsvpStatus": "pending",
-    "rsvpNote": "",
     "group": "One Family",
-    "_id": "61b52491df62033324816307",
+    "event": "61b79b9e0ac02dbe3e12fd1b",
+    "_id": "61b79ef2660830696a8985bd",
     "__v": 0
   }
 }
@@ -246,7 +210,7 @@ Adds a guest to an event
 
 ### `GET` /events/:eventId/guests
 
-Returns a guest, identified by `guestEmail`
+Returns a guest, identified by `email`
 
 #### Path parameters
 
@@ -264,14 +228,14 @@ Returns a guest, identified by `guestEmail`
 
 ```json
 {
-  "guestId": 12,
-  "firstName": "billy",
-  "lastName": "joel",
-  "email": "local@domain.com",
-  "group": "joel family",
-  "rsvpStatus": "attending",
-  "rvspLastUpdated": "2021-05-23",
-  "rsvpNote": "We look forward to attending!"
+  "_id": "61b79ef2660830696a8985bd",
+  "firstName": "Guest",
+  "lastName": "One",
+  "email": "guest_one@domain.com",
+  "rsvpStatus": "pending",
+  "group": "One Family",
+  "event": "61b79b9e0ac02dbe3e12fd1b",
+  "__v": 0
 }
 ```
 
@@ -291,7 +255,7 @@ Updates a guest
 | eventId   | string | yes      | none    | id of the event you are retrieving |
 | guestId   | string | yes      | none    | id of the guest you are updating   |
 
-#### Query parameters
+#### Body parameters
 
 | Parameter    | Type   | Required | Default | Description                                                                     |
 | :----------- | :----- | :------- | :------ | :------------------------------------------------------------------------------ |
@@ -331,12 +295,12 @@ Returns the rsvpData for an event
 
 ```json
 {
-  "eventId": 12,
-  "attending": 12,
-  "not attending": 3,
-  "pending": 50,
-  "total": 65,
-  "daysToRSVPDeadline": 12
+  "eventId": "61b79b9e0ac02dbe3e12fd1b",
+  "daysToRSVPDeadline": 181,
+  "attending": 0,
+  "not attending": 0,
+  "pending": 2,
+  "total": 2
 }
 ```
 
@@ -356,7 +320,7 @@ Returns the list of existing groups of guests to an event
 
 ```json
 {
-  "eventId": 12,
-  "groups": ["bridesmaids", "joel family", "byrd family"]
+  "eventId": "61b79b9e0ac02dbe3e12fd1b",
+  "groups": ["Individual", "Three Family"]
 }
 ```
