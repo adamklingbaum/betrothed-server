@@ -25,6 +25,10 @@ const guestSchema = new mongoose.Schema({
     type: 'String',
     required: false,
   },
+  rsvpLastUpdated: {
+    type: 'Date',
+    required: false,
+  },
   group: {
     type: 'String',
     required: false,
