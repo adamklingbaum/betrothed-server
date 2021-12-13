@@ -17,7 +17,9 @@ router.get('/events/:eventId', async (req, res) => {
   const { eventId } = req.params;
   try {
     const result = await Event.findById(eventId).lean();
-    if (!result) return res.status(404).send('Event not found');
+    if (!result) {
+      return res.status(404).send('Event not found');
+    }
     const guests = await Guest.find({ event: eventId });
     const groupedGuests = {};
     guests.forEach((guest) => {
@@ -28,7 +30,7 @@ router.get('/events/:eventId', async (req, res) => {
     result.guests = groupedGuests;
     res.status(200).send(result);
   } catch (error) {
-    res.status(404).send('Event not found');
+    res.status(400).send(error);
   }
 });
 
@@ -37,14 +39,16 @@ router.put('/events/:eventId', async (req, res) => {
   const update = req.query;
   try {
     const event = await Event.findById(eventId);
-    if (!event) return res.status(404).send('Event was not found');
+    if (!event) {
+      return res.status(404).send('Event was not found');
+    }
     Object.keys(update).forEach((prop) => {
       event[prop] = update[prop];
     });
     await event.save();
     res.status(204).send();
   } catch (error) {
-    res.status(404).send(error);
+    res.status(400).send(error);
   }
 });
 
@@ -78,12 +82,16 @@ router.get('/events/:eventId/guests', async (req, res) => {
   const { email } = req.query;
   try {
     const event = await Event.findById(eventId);
-    if (!event) return res.status(404).send('Event was not found');
+    if (!event) {
+      return res.status(404).send('Event was not found');
+    }
     const guest = await Guest.findOne({ event: eventId, email });
-    if (!guest) return res.status(404).send('Guest not found');
+    if (!guest) {
+      return res.status(404).send('Guest not found');
+    }
     res.status(200).send(guest);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(400).send(error);
   }
 });
 
@@ -92,15 +100,86 @@ router.put('/events/:eventId/guests/:guestId', async (req, res) => {
   const update = req.query;
   try {
     const event = await Event.findById(eventId);
-    if (!event) return res.status(404).send('Event was not found');
+    if (!event) {
+      return res.status(404).send('Event was not found');
+    }
     const guest = await Guest.findOne({ _id: guestId, event: eventId });
-    if (!guest)
+    if (!guest) {
       return res.status(404).send('Guest was not found for this event');
+    }
     Object.keys(update).forEach((prop) => {
       guest[prop] = update[prop];
     });
     await guest.save();
     res.status(204).send();
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.delete('/events/:eventId/guests/:guestId', async (req, res) => {
+  const { eventId, guestId } = req.params;
+  try {
+    const event = await Event.findById(eventId);
+    if (!event) {
+      return res.status(404).send('Event was not found');
+    }
+    const guest = await Guest.findOneAndDelete({
+      _id: guestId,
+      event: eventId,
+    });
+    if (!guest) {
+      return res.status(404).send('Guest was not found for this event');
+    }
+    res.status(200).send();
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.get('/events/:eventId/rsvpData', async (req, res) => {
+  const { eventId } = req.params;
+  try {
+    const event = await Event.findById(eventId);
+    if (!event) {
+      return res.status(404).send('Event was not found');
+    }
+    const rsvpData = {
+      eventId,
+      daysToRSVPDeadline: Math.round(
+        (event.rsvpDeadline - Date.now()) / (1000 * 3600 * 24)
+      ),
+    };
+    let total = 0;
+    const promises = ['attending', 'not attending', 'pending'].map(
+      (status) =>
+        new Promise((resolve) => {
+          Guest.count({ event: eventId, rsvpStatus: status }).then((count) => {
+            rsvpData[status] = count;
+            total += count;
+            resolve();
+          });
+        })
+    );
+    Promise.all(promises).then(() => {
+      rsvpData.total = total;
+      res.status(200).send(rsvpData);
+    });
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.get('/events/:eventId/groups', async (req, res) => {
+  const { eventId } = req.params;
+  try {
+    const event = await Event.findById(eventId);
+    if (!event) {
+      return res.status(404).send('Event was not found');
+    }
+    const result = { eventId };
+    result.groups = await Guest.find({ event: eventId }).distinct('group');
+    res.status(200).send(result);
   } catch (error) {
     res.status(400).send(error);
   }
