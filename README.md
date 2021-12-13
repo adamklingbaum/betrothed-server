@@ -186,7 +186,7 @@ Adds a guest to an event
 | :-------- | :----- | :------- | :------ | :--------------------------------- |
 | eventId   | string | yes      | none    | id of the event you are posting to |
 
-#### Query parameters
+#### Body parameters
 
 | Parameter | Type   | Required | Default      | Description                                                                     |
 | :-------- | :----- | :------- | :----------- | :------------------------------------------------------------------------------ |
