@@ -159,7 +159,7 @@ Updates an event
 | {coupleName1}       | string                                    | no       | none    | name of an individual in the couple                                                                             |
 | {coupleName2}       | string                                    | no       | none    | name of the other individual in the couple                                                                      |
 | {email}             | string                                    | no       | none    | couple's designated contact email                                                                               |
-| {date3}             | string (ISOString)                        | no       | none    | date (with time) of the event                                                                                   |
+| {date}             | string (ISOString)                        | no       | none    | date (with time) of the event                                                                                   |
 | {venue}             | string                                    | no       | none    | name of the event venue                                                                                         |
 | {addressLine1}      | string                                    | no       | none    | street address                                                                                                  |
 | {addressLine2}      | string                                    | no       | none    | unit/apt/suite/other as applicable                                                                              |
