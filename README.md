@@ -95,7 +95,7 @@ Returns an event
   "city": "Austin",
   "state": "TX",
   "zip": "12345",
-  "guestLimit": 100,
+  "guestLimit": 200,
   "rsvpDeadline": "2022-06-13T00:00:00.000Z",
   "inviteMessage": "Please join us in celebrating our new life together.",
   "dashboardPhotoURL": "shorturl.at/tuHZ3",
@@ -105,23 +105,11 @@ Returns an event
     "2": "shorturl.at/tuHZ3"
   },
   "colors": {
-    "1": "#FFFFFF",
-    "2": "#000000"
+    "1": "#ABC123",
+    "2": "#123ABC"
   },
   "__v": 0,
   "guests": {
-    "One Family": [
-      {
-        "_id": "61b79ef2660830696a8985bd",
-        "firstName": "Guest",
-        "lastName": "One",
-        "email": "guest_one@domain.com",
-        "rsvpStatus": "pending",
-        "group": "One Family",
-        "event": "61b79b9e0ac02dbe3e12fd1b",
-        "__v": 0
-      }
-    ],
     "Individual": [
       {
         "_id": "61b79f4b660830696a8985c3",
@@ -132,6 +120,32 @@ Returns an event
         "group": "Individual",
         "event": "61b79b9e0ac02dbe3e12fd1b",
         "__v": 0
+      }
+    ],
+    "Three Family": [
+      {
+        "_id": "61b7acb5da2ddaf0d73c5aae",
+        "firstName": "Guest",
+        "lastName": "Three",
+        "email": "guest_three@domain.com",
+        "rsvpStatus": "pending",
+        "group": "Three Family",
+        "event": "61b79b9e0ac02dbe3e12fd1b",
+        "__v": 0
+      }
+    ],
+    "Four Family": [
+      {
+        "_id": "61b7b1edda2ddaf0d73c5acc",
+        "firstName": "Guest",
+        "lastName": "Four",
+        "email": "guest_four@domain.com",
+        "rsvpStatus": "attending",
+        "group": "Four Family",
+        "event": "61b79b9e0ac02dbe3e12fd1b",
+        "__v": 0,
+        "rsvpLastUpdated": "2021-12-13T20:50:25.986Z",
+        "rsvpNote": "Thanks for the invite! I'll be there."
       }
     ]
   }
