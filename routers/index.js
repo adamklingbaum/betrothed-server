@@ -16,8 +16,16 @@ router.post('/events', async (req, res) => {
 router.get('/events/:eventId', async (req, res) => {
   const { eventId } = req.params;
   try {
-    const result = await Event.findById(eventId).populate('guests');
+    const result = await Event.findById(eventId).lean();
     if (!result) return res.status(404).send('Event not found');
+    const guests = await Guest.find({ event: eventId });
+    const groupedGuests = {};
+    guests.forEach((guest) => {
+      const g = guest;
+      groupedGuests[g.group] = groupedGuests[g.group] || [];
+      groupedGuests[g.group].push(g);
+    });
+    result.guests = groupedGuests;
     res.status(200).send(result);
   } catch (error) {
     res.status(404).send('Event not found');
