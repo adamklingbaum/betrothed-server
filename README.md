@@ -70,9 +70,9 @@ Returns an event
 
 #### Path parameters
 
-| Parameter | Type    | Required | Default | Description                        |
-| :-------- | :------ | :------- | :------ | :--------------------------------- |
-| eventId   | integer | yes      | none    | id of the event you are retrieving |
+| Parameter | Type   | Required | Default | Description                        |
+| :-------- | :----- | :------- | :------ | :--------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are retrieving |
 
 #### Sample response
 
@@ -178,9 +178,9 @@ Updates an event
 
 #### Path parameters
 
-| Parameter | Type    | Required | Default | Description                      |
-| :-------- | :------ | :------- | :------ | :------------------------------- |
-| eventId   | integer | yes      | none    | id of the event you are updating |
+| Parameter | Type   | Required | Default | Description                      |
+| :-------- | :----- | :------- | :------ | :------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are updating |
 
 #### Body parameters
 
@@ -212,18 +212,18 @@ Adds a guest to an event
 
 #### Path parameters
 
-| Parameter | Type    | Required | Default | Description                        |
-| :-------- | :------ | :------- | :------ | :--------------------------------- |
-| eventId   | integer | yes      | none    | id of the event you are posting to |
+| Parameter | Type   | Required | Default | Description                        |
+| :-------- | :----- | :------- | :------ | :--------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are posting to |
 
 #### Query parameters
 
-| Parameter | Type   | Required | Default | Description                                                                     |
-| :-------- | :----- | :------- | :------ | :------------------------------------------------------------------------------ |
-| firstName | string | yes      | none    | guest first name                                                                |
-| lastName  | string | yes      | none    | guest last name                                                                 |
-| email     | string | yes      | none    | guest email address; will be the default email to which communications are sent |
-| group     | string | no       | none    | name of group                                                                   |
+| Parameter | Type   | Required | Default      | Description                                                                     |
+| :-------- | :----- | :------- | :----------- | :------------------------------------------------------------------------------ |
+| firstName | string | yes      | none         | guest first name                                                                |
+| lastName  | string | yes      | none         | guest last name                                                                 |
+| email     | string | yes      | none         | guest email address; will be the default email to which communications are sent |
+| group     | string | no       | 'Individual' | name of group                                                                   |
 
 #### Sample response
 
@@ -244,16 +244,21 @@ Adds a guest to an event
 
 ---
 
-### `GET` /events/:eventId/guests/:guestEmail
+### `GET` /events/:eventId/guests
 
 Returns a guest, identified by `guestEmail`
 
 #### Path parameters
 
-| Parameter  | Type    | Required | Default | Description                                   |
-| :--------- | :------ | :------- | :------ | :-------------------------------------------- |
-| eventId    | integer | yes      | none    | id of the event you are retrieving            |
-| guestEmail | string  | yes      | none    | email address of the guest you are retrieving |
+| Parameter | Type   | Required | Default | Description                        |
+| :-------- | :----- | :------- | :------ | :--------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are retrieving |
+
+#### Query parameters
+
+| Parameter | Type   | Required | Default | Description                                   |
+| :-------- | :----- | :------- | :------ | :-------------------------------------------- |
+| email     | string | yes      | none    | email address of the guest you are retrieving |
 
 #### Sample response
 
@@ -281,10 +286,10 @@ Updates a guest
 
 #### Path parameters
 
-| Parameter | Type    | Required | Default | Description                        |
-| :-------- | :------ | :------- | :------ | :--------------------------------- |
-| eventId   | integer | yes      | none    | id of the event you are retrieving |
-| guestId   | integer | yes      | none    | id of the guest you are updating   |
+| Parameter | Type   | Required | Default | Description                        |
+| :-------- | :----- | :------- | :------ | :--------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are retrieving |
+| guestId   | string | yes      | none    | id of the guest you are updating   |
 
 #### Query parameters
 
@@ -305,10 +310,10 @@ Deletes a guest
 
 #### Path parameters
 
-| Parameter | Type    | Required | Default | Description                        |
-| :-------- | :------ | :------- | :------ | :--------------------------------- |
-| eventId   | integer | yes      | none    | id of the event you are retrieving |
-| guestId   | integer | yes      | none    | id of the guest you are deleting   |
+| Parameter | Type   | Required | Default | Description                        |
+| :-------- | :----- | :------- | :------ | :--------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are retrieving |
+| guestId   | string | yes      | none    | id of the guest you are deleting   |
 
 ---
 
@@ -318,9 +323,9 @@ Returns the rsvpData for an event
 
 #### Path parameters
 
-| Parameter | Type    | Required | Default | Description                        |
-| :-------- | :------ | :------- | :------ | :--------------------------------- |
-| eventId   | integer | yes      | none    | id of the event you are retrieving |
+| Parameter | Type   | Required | Default | Description                        |
+| :-------- | :----- | :------- | :------ | :--------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are retrieving |
 
 #### Sample response
 
