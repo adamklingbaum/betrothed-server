@@ -74,14 +74,31 @@ router.get('/events/:eventId/guests', async (req, res) => {
   const { email } = req.query;
   try {
     const event = await Event.findById(eventId);
-    if (!event) {
-      return res.status(404).send('Event was not found');
-    }
+    if (!event) return res.status(404).send('Event was not found');
     const guest = await Guest.findOne({ event: eventId, email });
     if (!guest) return res.status(404).send('Guest not found');
     res.status(200).send(guest);
   } catch (error) {
-    res.status(404).send(error);
+    res.status(500).send(error);
+  }
+});
+
+router.put('/events/:eventId/guests/:guestId', async (req, res) => {
+  const { eventId, guestId } = req.params;
+  const update = req.query;
+  try {
+    const event = await Event.findById(eventId);
+    if (!event) return res.status(404).send('Event was not found');
+    const guest = await Guest.findOne({ _id: guestId, event: eventId });
+    if (!guest)
+      return res.status(404).send('Guest was not found for this event');
+    Object.keys(update).forEach((prop) => {
+      guest[prop] = update[prop];
+    });
+    await guest.save();
+    res.status(204).send();
+  } catch (error) {
+    res.status(400).send(error);
   }
 });
 
