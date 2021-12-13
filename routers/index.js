@@ -16,17 +16,17 @@ router.post('/events', async (req, res) => {
 router.get('/events/:eventId', async (req, res) => {
   const { eventId } = req.params;
   try {
-    const result = await Event.findById(eventId).populate('guests').lean();
-    const { guests } = result;
+    const result = await Event.findById(eventId).populate('guests');
+    /* const { guests } = result;
     const groupedGuests = {};
     guests.forEach((guest) => {
       groupedGuests[guest.group] = groupedGuests[guest.group] || [];
       groupedGuests[guest.group].push(guest);
     });
-    result.guests = groupedGuests;
+    result.guests = groupedGuests; */
     res.status(200).send(result);
   } catch (error) {
-    res.status(404).send(error);
+    res.status(404).send('Event not found');
   }
 });
 
@@ -44,16 +44,15 @@ router.put('/events/:eventId', async (req, res) => {
 
 router.post('/events/:eventId/guests', async (req, res) => {
   const { eventId } = req.params;
-  const guest = new Guest(req.body);
 
   try {
-    const savedGuest = await guest.save();
     const eventResult = await Event.findById(eventId);
     if (!eventResult) {
       return res.status(404).send('Event was not found');
     }
-    eventResult.guests.push(savedGuest._id);
-    await eventResult.save();
+    const guest = new Guest(req.body);
+    guest.event = eventResult._id;
+    await guest.save();
     res.status(201).json({ createdGuest: guest });
   } catch (error) {
     res.status(400).send(error);

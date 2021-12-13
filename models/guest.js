@@ -30,6 +30,10 @@ const guestSchema = new mongoose.Schema({
     required: false,
     default: 'Individual',
   },
+  event: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Event',
+  },
 });
 
 module.exports.Guest = mongoose.model('Guest', guestSchema);
