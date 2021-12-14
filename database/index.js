@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
 const mongoose = require('mongoose');
-// eslint-disable-next-line node/no-unpublished-require
-const { mongoURI } = require('../config/private.config');
+require('dotenv').config();
+
+const { MONGO_URI } = process.env;
 
 try {
   mongoose.connect(
-    mongoURI,
+    MONGO_URI,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => console.log('Mongoose is connected')
   );
