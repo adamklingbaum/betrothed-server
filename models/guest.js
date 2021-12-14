@@ -24,13 +24,21 @@ const guestSchema = new mongoose.Schema({
   rsvpNote: {
     type: 'String',
     required: false,
-    default: '',
+  },
+  rsvpLastUpdated: {
+    type: 'Date',
+    required: false,
   },
   group: {
     type: 'String',
     required: false,
+    default: 'Individual',
+  },
+  event: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Event',
   },
 });
 
-module.exports.Guest = mongoose.model('Guests', guestSchema);
+module.exports.Guest = mongoose.model('Guest', guestSchema);
 module.exports.guestSchema = guestSchema;

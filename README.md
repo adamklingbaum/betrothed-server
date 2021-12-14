@@ -1,36 +1,70 @@
 # betrothed API
 
+### View example requests in [Postman](https://www.postman.com/)
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/91f5e1d2d4de33d70d36?action=collection%2Fimport)
+
+```
+Postman instructions to come...
+```
+
 ### `POST` /events
 
 Creates an event
 
 #### Body parameters
 
-| Parameter      | Type                                      | Required | Default | Description                                                                                                     |
-| :------------- | :---------------------------------------- | :------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
-| coupleName1    | string                                    | yes      | none    | name of an individual in the couple                                                                             |
-| coupleName2    | string                                    | yes      | none    | name of the other individual in the couple                                                                      |
-| email          | string                                    | yes      | none    | couple's designated contact email                                                                               |
-| dateTime       | string (ISOString)                        | yes      | none    | date (with time) of the event                                                                                   |
-| venue          | string                                    | yes      | none    | name of the event venue                                                                                         |
-| addressLine1   | string                                    | yes      | none    | street address of the event venue                                                                               |
-| addressLine2   | string                                    | no       | none    | unit/apt/suite/other as applicable                                                                              |
-| city           | string                                    | yes      | none    | city of the event                                                                                               |
-| state          | string (official 2-letter abbreviation)   | yes      | none    | state of the event                                                                                              |
-| zip            | string                                    | yes      | none    | zip code of the event                                                                                           |
-| guestLimit     | integer                                   | no       | none    | limit on guests to the event                                                                                    |
-| rsvpDeadline   | string (ISOString)                        | yes      | none    | deadline for a guest to RSVP                                                                                    |
-| inviteMessage  | string                                    | yes      | none    | customized invitation message sent to guests                                                                    |
-| dashBoardPhoto | string                                    | no       | none    | photo to display on couple's dashboard                                                                          |
-| bannerPhoto    | string                                    | no       | none    | main photo to display on invitations                                                                            |
-| galleryPhotos  | object { [number]: [url_as_string] }      | no       | none    | photos to display in carousel on invitations; keys are photo numbers and values are public URLs as strings      |
-| colors         | object { [number]: [hex_code_as_string] } | no       | none    | custom invitation color scheme picked by the couple; keys are color numbers and values are hex codes as strings |
+| Parameter         | Type                                      | Required | Default | Description                                                                                                     |
+| :---------------- | :---------------------------------------- | :------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
+| coupleName1       | string                                    | yes      | none    | name of an individual in the couple                                                                             |
+| coupleName2       | string                                    | yes      | none    | name of the other individual in the couple                                                                      |
+| email             | string                                    | yes      | none    | couple's designated contact email                                                                               |
+| date              | string (ISOString)                        | yes      | none    | date (with time) of the event                                                                                   |
+| venue             | string                                    | yes      | none    | name of the event venue                                                                                         |
+| addressLine1      | string                                    | yes      | none    | street address of the event venue                                                                               |
+| addressLine2      | string                                    | no       | none    | unit/apt/suite/other as applicable                                                                              |
+| city              | string                                    | yes      | none    | city of the event                                                                                               |
+| state             | string (official 2-letter abbreviation)   | yes      | none    | state of the event                                                                                              |
+| zip               | string                                    | yes      | none    | zip code of the event                                                                                           |
+| guestLimit        | integer                                   | no       | none    | limit on guests to the event                                                                                    |
+| rsvpDeadline      | string (ISOString)                        | yes      | none    | deadline for a guest to RSVP                                                                                    |
+| inviteMessage     | string                                    | yes      | none    | customized invitation message sent to guests                                                                    |
+| dashboardPhotoURL | string                                    | no       | none    | photo to display on couple's dashboard                                                                          |
+| bannerPhotoURL    | string                                    | no       | none    | main photo to display on invitations                                                                            |
+| galleryPhotos     | object { [number]: [url_as_string] }      | no       | none    | photos to display in carousel on invitations; keys are photo numbers and values are public URLs as strings      |
+| colors            | object { [number]: [hex_code_as_string] } | no       | none    | custom invitation color scheme picked by the couple; keys are color numbers and values are hex codes as strings |
 
 #### Sample response
 
 ```json
 {
-  "eventId": 14
+  "createdEvent": {
+    "coupleName1": "Ford",
+    "coupleName2": "Ferrari",
+    "email": "ford_ferrari_wedding@domain.com",
+    "date": "2022-12-13T00:00:00.000Z",
+    "venue": "The Big Venue",
+    "addressLine1": "123 Big Venue St.",
+    "addressLine2": "Suite 12",
+    "city": "Austin",
+    "state": "TX",
+    "zip": "12345",
+    "guestLimit": 100,
+    "rsvpDeadline": "2022-06-13T00:00:00.000Z",
+    "inviteMessage": "Please join us in celebrating our new life together.",
+    "dashboardPhotoURL": "shorturl.at/tuHZ3",
+    "bannerPhotoURL": "shorturl.at/tuHZ3",
+    "galleryPhotos": {
+      "1": "shorturl.at/tuHZ3",
+      "2": "shorturl.at/tuHZ3"
+    },
+    "colors": {
+      "1": "#FFFFFF",
+      "2": "#000000"
+    },
+    "_id": "61b79b9e0ac02dbe3e12fd1b",
+    "__v": 0
+  }
 }
 ```
 
@@ -42,96 +76,76 @@ Returns an event
 
 #### Path parameters
 
-| Parameter | Type    | Required | Default | Description                        |
-| :-------- | :------ | :------- | :------ | :--------------------------------- |
-| eventId   | integer | yes      | none    | id of the event you are retrieving |
+| Parameter | Type   | Required | Default | Description                        |
+| :-------- | :----- | :------- | :------ | :--------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are retrieving |
 
 #### Sample response
 
 ```json
 {
-  "eventId": 12,
-  "coupleName1": "Ted Baker",
-  "coupleName2": "Yves St-Laurent",
-  "email": "couple@email.com",
-  "date": "2022-08-12T20:17:46.384Z",
-  "venue": "Hack Reactor Auditorium",
-  "addressLine1": "119 Nueces St",
-  "addressLine2": "Room 1104",
+  "_id": "61b79b9e0ac02dbe3e12fd1b",
+  "coupleName1": "Ford",
+  "coupleName2": "Ferrari",
+  "email": "ford_ferrari_wedding@domain.com",
+  "date": "2022-12-13T00:00:00.000Z",
+  "venue": "The Big Venue",
+  "addressLine1": "123 Big Venue St.",
+  "addressLine2": "Suite 12",
   "city": "Austin",
   "state": "TX",
-  "zipCode": "78701",
-  "daysToEvent": 15,
-  "guestLimit": 100,
-  "rsvpDeadline": "2021-12-01T20:17:46.384Z",
-  "daysToRSVPDeadline": 12,
-  "inviteMessage": "Please join us for our special day",
-  "dashboardPhoto": "shorturl.at/oJW34",
-  "bannerPhoto": "shorturl.at/oJW34",
+  "zip": "12345",
+  "guestLimit": 200,
+  "rsvpDeadline": "2022-06-13T00:00:00.000Z",
+  "inviteMessage": "Please join us in celebrating our new life together.",
+  "dashboardPhotoURL": "shorturl.at/tuHZ3",
+  "bannerPhotoURL": "shorturl.at/tuHZ3",
   "galleryPhotos": {
-    "1": "shorturl.at/oJW34",
-    "2": "shorturl.at/oJW34",
-    "3": "shorturl.at/oJW34"
+    "1": "shorturl.at/tuHZ3",
+    "2": "shorturl.at/tuHZ3"
   },
   "colors": {
-    "1": "#F0DA32",
-    "2": "#87B3BF",
-    "3": "#6E4AFF",
-    "4": "#5337C9"
+    "1": "#ABC123",
+    "2": "#123ABC"
   },
+  "__v": 0,
   "guests": {
-    "Doe family": [
-      {
-        "guestId": 12,
-        "firstName": "John",
-        "lastName": "Doe",
-        "email": "one@domain.com",
-        "rsvpStatus": "attending",
-        "rvspLastUpdated": "2021-05-23T20:17:46.384Z",
-        "rsvpNote": "I look forward to attending!",
-        "group": "Doe family"
-      },
-      {
-        "guestId": 13,
-        "firstName": "Jane",
-        "lastName": "Doe",
-        "email": "two@domain.com",
-        "rsvpStatus": "not attending",
-        "rvspLastUpdated": "2021-05-13T20:17:46.384Z",
-        "rsvpNote": "I will not be attending your wedding!",
-        "group": "Doe family"
-      }
-    ],
-    "Family friends": [
-      {
-        "guestId": 14,
-        "firstName": "Ted",
-        "lastName": "Smith",
-        "email": "three@domain.com",
-        "rsvpStatus": "attending",
-        "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
-        "rsvpNote": "I can't wait! Thanks for thinking of me.",
-        "group": "Family friends"
-      }
-    ],
     "Individual": [
       {
-        "guestId": 15,
-        "firstName": "Jack",
-        "lastName": "White",
-        "email": "four@domain.com",
-        "rsvpStatus": "attending",
-        "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
-        "rsvpNote": "I will be there on your special day!"
-      },
-      {
-        "guestId": 16,
-        "firstName": "Peter",
-        "lastName": "Parker",
-        "email": "five@domain.com",
+        "_id": "61b79f4b660830696a8985c3",
+        "firstName": "Guest",
+        "lastName": "Two",
+        "email": "guest_two@domain.com",
         "rsvpStatus": "pending",
-        "rvspLastUpdated": "2021-05-22T20:17:46.384Z",
-        "rsvpNote": ""
+        "group": "Individual",
+        "event": "61b79b9e0ac02dbe3e12fd1b",
+        "__v": 0
+      }
+    ],
+    "Three Family": [
+      {
+        "_id": "61b7acb5da2ddaf0d73c5aae",
+        "firstName": "Guest",
+        "lastName": "Three",
+        "email": "guest_three@domain.com",
+        "rsvpStatus": "pending",
+        "group": "Three Family",
+        "event": "61b79b9e0ac02dbe3e12fd1b",
+        "__v": 0
+      }
+    ],
+    "Four Family": [
+      {
+        "_id": "61b7b1edda2ddaf0d73c5acc",
+        "firstName": "Guest",
+        "lastName": "Four",
+        "email": "guest_four@domain.com",
+        "rsvpStatus": "attending",
+        "group": "Four Family",
+        "event": "61b79b9e0ac02dbe3e12fd1b",
+        "__v": 0,
+        "rsvpLastUpdated": "2021-12-13T20:50:25.986Z",
+        "rsvpNote": "Thanks for the invite! I'll be there."
       }
     ]
   }
@@ -148,31 +162,31 @@ Updates an event
 
 #### Path parameters
 
-| Parameter | Type    | Required | Default | Description                      |
-| :-------- | :------ | :------- | :------ | :------------------------------- |
-| eventId   | integer | yes      | none    | id of the event you are updating |
+| Parameter | Type   | Required | Default | Description                      |
+| :-------- | :----- | :------- | :------ | :------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are updating |
 
 #### Body parameters
 
-| Parameter        | Type                                      | Required | Default | Description                                                                                                     |
-| :--------------- | :---------------------------------------- | :------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
-| {coupleName1}    | string                                    | no       | none    | name of an individual in the couple                                                                             |
-| {coupleName2}    | string                                    | no       | none    | name of the other individual in the couple                                                                      |
-| {email}          | string                                    | no       | none    | couple's designated contact email                                                                               |
-| {dateTime}       | string (ISOString)                        | no       | none    | date (with time) of the event                                                                                   |
-| {venue}          | string                                    | no       | none    | name of the event venue                                                                                         |
-| {addressLine1}   | string                                    | no       | none    | street address                                                                                                  |
-| {addressLine2}   | string                                    | no       | none    | unit/apt/suite/other as applicable                                                                              |
-| {city}           | string                                    | no       | none    | city of the event                                                                                               |
-| {state}          | string (official 2-letter abbreviation)   | no       | none    | state of the event                                                                                              |
-| {zip}            | string                                    | no       | none    | zip code of the event                                                                                           |
-| {guestLimit}     | integer                                   | no       | none    | limit on guests to the event                                                                                    |
-| {rsvpDeadline}   | string (ISOString)                        | no       | none    | deadline for a guest to RSVP                                                                                    |
-| {inviteMessage}  | string                                    | no       | none    | customized invitation message sent to guests                                                                    |
-| {dashBoardPhoto} | string                                    | no       | none    | photo to display on couple's dashboard                                                                          |
-| {bannerPhoto}    | string                                    | no       | none    | main photo to display on invitations                                                                            |
-| {galleryPhotos}  | object { [number]: [url_as_string] }      | no       | none    | photos to display in carousel on invitations; keys are photo numbers and values are public URLs as strings      |
-| {colors}         | object { [number]: [hex_code_as_string] } | no       | none    | custom invitation color scheme picked by the couple; keys are color numbers and values are hex codes as strings |
+| Parameter           | Type                                      | Required | Default | Description                                                                                                     |
+| :------------------ | :---------------------------------------- | :------- | :------ | :-------------------------------------------------------------------------------------------------------------- |
+| {coupleName1}       | string                                    | no       | none    | name of an individual in the couple                                                                             |
+| {coupleName2}       | string                                    | no       | none    | name of the other individual in the couple                                                                      |
+| {email}             | string                                    | no       | none    | couple's designated contact email                                                                               |
+| {date}             | string (ISOString)                        | no       | none    | date (with time) of the event                                                                                   |
+| {venue}             | string                                    | no       | none    | name of the event venue                                                                                         |
+| {addressLine1}      | string                                    | no       | none    | street address                                                                                                  |
+| {addressLine2}      | string                                    | no       | none    | unit/apt/suite/other as applicable                                                                              |
+| {city}              | string                                    | no       | none    | city of the event                                                                                               |
+| {state}             | string (official 2-letter abbreviation)   | no       | none    | state of the event                                                                                              |
+| {zip}               | string                                    | no       | none    | zip code of the event                                                                                           |
+| {guestLimit}        | integer                                   | no       | none    | limit on guests to the event                                                                                    |
+| {rsvpDeadline}      | string (ISOString)                        | no       | none    | deadline for a guest to RSVP                                                                                    |
+| {inviteMessage}     | string                                    | no       | none    | customized invitation message sent to guests                                                                    |
+| {dashboardPhotoURL} | string                                    | no       | none    | photo to display on couple's dashboard                                                                          |
+| {bannerPhotoURL}    | string                                    | no       | none    | main photo to display on invitations                                                                            |
+| {galleryPhotos}     | object { [number]: [url_as_string] }      | no       | none    | photos to display in carousel on invitations; keys are photo numbers and values are public URLs as strings      |
+| {colors}            | object { [number]: [hex_code_as_string] } | no       | none    | custom invitation color scheme picked by the couple; keys are color numbers and values are hex codes as strings |
 
 ---
 
@@ -182,52 +196,68 @@ Adds a guest to an event
 
 #### Path parameters
 
-| Parameter | Type    | Required | Default | Description                        |
-| :-------- | :------ | :------- | :------ | :--------------------------------- |
-| eventId   | integer | yes      | none    | id of the event you are posting to |
+| Parameter | Type   | Required | Default | Description                        |
+| :-------- | :----- | :------- | :------ | :--------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are posting to |
 
-#### Query parameters
+#### Body parameters
 
-| Parameter | Type   | Required | Default | Description                                                                     |
-| :-------- | :----- | :------- | :------ | :------------------------------------------------------------------------------ |
-| firstName | string | yes      | none    | guest first name                                                                |
-| lastName  | string | yes      | none    | guest last name                                                                 |
-| email     | string | yes      | none    | guest email address; will be the default email to which communications are sent |
-| group     | string | no       | none    | name of group                                                                   |
+| Parameter | Type   | Required | Default      | Description                                                                     |
+| :-------- | :----- | :------- | :----------- | :------------------------------------------------------------------------------ |
+| firstName | string | yes      | none         | guest first name                                                                |
+| lastName  | string | yes      | none         | guest last name                                                                 |
+| email     | string | yes      | none         | guest email address; will be the default email to which communications are sent |
+| group     | string | no       | 'Individual' | name of group                                                                   |
 
 #### Sample response
 
 ```json
 {
-  "guestId": 34
+  "createdGuest": {
+    "firstName": "Guest",
+    "lastName": "One",
+    "email": "guest_one@domain.com",
+    "rsvpStatus": "pending",
+    "group": "One Family",
+    "event": "61b79b9e0ac02dbe3e12fd1b",
+    "_id": "61b79ef2660830696a8985bd",
+    "__v": 0
+  }
 }
 ```
 
 ---
 
-### `GET` /events/:eventId/guests/:guestEmail
+### `GET` /events/:eventId/guests
 
-Returns a guest, identified by `guestEmail`
+Returns a guest, identified by `email`
 
 #### Path parameters
 
-| Parameter  | Type    | Required | Default | Description                                   |
-| :--------- | :------ | :------- | :------ | :-------------------------------------------- |
-| eventId    | integer | yes      | none    | id of the event you are retrieving            |
-| guestEmail | string  | yes      | none    | email address of the guest you are retrieving |
+| Parameter | Type   | Required | Default | Description                        |
+| :-------- | :----- | :------- | :------ | :--------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are retrieving |
+
+#### Query parameters
+
+| Parameter | Type   | Required | Default | Description                                   |
+| :-------- | :----- | :------- | :------ | :-------------------------------------------- |
+| email     | string | yes      | none    | email address of the guest you are retrieving |
 
 #### Sample response
 
 ```json
 {
-  "guestId": 12,
-  "firstName": "billy",
-  "lastName": "joel",
-  "email": "local@domain.com",
-  "group": "joel family",
+  "_id": "61b7b1edda2ddaf0d73c5acc",
+  "firstName": "Guest",
+  "lastName": "Four",
+  "email": "guest_four@domain.com",
   "rsvpStatus": "attending",
-  "rvspLastUpdated": "2021-05-23",
-  "rsvpNote": "We look forward to attending!"
+  "group": "Four Family",
+  "event": "61b79b9e0ac02dbe3e12fd1b",
+  "__v": 0,
+  "rsvpLastUpdated": "2021-12-13T20:50:25.986Z",
+  "rsvpNote": "Thanks for the invite! I'll be there."
 }
 ```
 
@@ -242,12 +272,12 @@ Updates a guest
 
 #### Path parameters
 
-| Parameter | Type    | Required | Default | Description                        |
-| :-------- | :------ | :------- | :------ | :--------------------------------- |
-| eventId   | integer | yes      | none    | id of the event you are retrieving |
-| guestId   | integer | yes      | none    | id of the guest you are updating   |
+| Parameter | Type   | Required | Default | Description                        |
+| :-------- | :----- | :------- | :------ | :--------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are retrieving |
+| guestId   | string | yes      | none    | id of the guest you are updating   |
 
-#### Query parameters
+#### Body parameters
 
 | Parameter    | Type   | Required | Default | Description                                                                     |
 | :----------- | :----- | :------- | :------ | :------------------------------------------------------------------------------ |
@@ -266,10 +296,10 @@ Deletes a guest
 
 #### Path parameters
 
-| Parameter | Type    | Required | Default | Description                        |
-| :-------- | :------ | :------- | :------ | :--------------------------------- |
-| eventId   | integer | yes      | none    | id of the event you are retrieving |
-| guestId   | integer | yes      | none    | id of the guest you are deleting   |
+| Parameter | Type   | Required | Default | Description                        |
+| :-------- | :----- | :------- | :------ | :--------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are retrieving |
+| guestId   | string | yes      | none    | id of the guest you are deleting   |
 
 ---
 
@@ -279,20 +309,20 @@ Returns the rsvpData for an event
 
 #### Path parameters
 
-| Parameter | Type    | Required | Default | Description                        |
-| :-------- | :------ | :------- | :------ | :--------------------------------- |
-| eventId   | integer | yes      | none    | id of the event you are retrieving |
+| Parameter | Type   | Required | Default | Description                        |
+| :-------- | :----- | :------- | :------ | :--------------------------------- |
+| eventId   | string | yes      | none    | id of the event you are retrieving |
 
 #### Sample response
 
 ```json
 {
-  "eventId": 12,
-  "attending": 12,
-  "not attending": 3,
-  "pending": 50,
-  "total": 65,
-  "daysToRSVPDeadline": 12
+  "eventId": "61b79b9e0ac02dbe3e12fd1b",
+  "daysToRSVPDeadline": 181,
+  "attending": 0,
+  "not attending": 0,
+  "pending": 2,
+  "total": 2
 }
 ```
 
@@ -312,7 +342,7 @@ Returns the list of existing groups of guests to an event
 
 ```json
 {
-  "eventId": 12,
-  "groups": ["bridesmaids", "joel family", "byrd family"]
+  "eventId": "61b79b9e0ac02dbe3e12fd1b",
+  "groups": ["Individual", "Three Family"]
 }
 ```
