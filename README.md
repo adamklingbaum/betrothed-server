@@ -1,12 +1,22 @@
 # betrothed API
 
-### View example requests in [Postman](https://www.postman.com/)
+#### View example requests in Postman
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/91f5e1d2d4de33d70d36?action=collection%2Fimport)
 
+1. Download the collection to your workspace in Postman.
+2. Navigate to the variables tab of the collection.
+3. Populate the `CURRENT VALUE` (**not** `INITIAL VALUE`) of the `base_url` variable with the base url you have been given. All pre-populated requests are configured to reference this `base_url` and you may reference this `base_url`, as follows, in any newly created requests.
+
+Example use of the `base_url` variable for newly created requests in Postman:
+
 ```
-Postman instructions to come...
+GET {{base_url}}/events
+PUT {{base_url}}/events/abcd1234
+POST {{base_url}}/events/abcd1234/guests
 ```
+
+---
 
 ### `POST` /events
 
