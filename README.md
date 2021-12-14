@@ -1,6 +1,6 @@
 # betrothed API
 
-#### View example requests in Postman
+_View example requests in Postman_
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/91f5e1d2d4de33d70d36?action=collection%2Fimport)
 
