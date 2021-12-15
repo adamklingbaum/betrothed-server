@@ -11,7 +11,7 @@ _View example requests in Postman_
 Example use of the `base_url` variable for newly created requests in Postman:
 
 ```
-GET {{base_url}}/events
+GET {{base_url}}/events/abcd1234
 PUT {{base_url}}/events/abcd1234
 POST {{base_url}}/events/abcd1234/guests
 ```
