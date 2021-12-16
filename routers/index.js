@@ -1,5 +1,5 @@
 const express = require('express');
-const { Event, Guest } = require('../models');
+const { Event, Guest, Gift } = require('../models');
 
 const router = express.Router();
 
@@ -141,7 +141,7 @@ router.delete('/events/:eventId/guests/:guestId', async (req, res) => {
     if (!guest) {
       return res.status(404).send('Guest was not found for this event');
     }
-    res.status(200).send();
+    res.status(204).send();
   } catch (error) {
     res.status(400).send(error);
   }
@@ -190,6 +190,81 @@ router.get('/events/:eventId/groups', async (req, res) => {
     const result = { eventId };
     result.groups = await Guest.find({ event: eventId }).distinct('group');
     res.status(200).send(result);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.post('/events/:eventId/gifts', async (req, res) => {
+  const { eventId } = req.params;
+  try {
+    const event = await Event.findById(eventId);
+    if (!event) {
+      return res.status(404).send('Event was not found');
+    }
+    const gift = new Gift({ ...req.body, event: eventId });
+    const result = await gift.save();
+    res.status(201).json({ createdGift: result });
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.get('/events/:eventId/gifts', async (req, res) => {
+  const { eventId } = req.params;
+  try {
+    const event = await Event.findById(eventId);
+    if (!event) {
+      return res.status(404).send('Event was not found');
+    }
+    const result = { eventId };
+    result.gifts = await Gift.find({ event: eventId });
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.put('/events/:eventId/gifts/:giftId/claim', async (req, res) => {
+  const { eventId, giftId } = req.params;
+  const { guestId } = req.body;
+  try {
+    const event = await Event.findById(eventId);
+    if (!event) {
+      return res.status(404).send('Event was not found');
+    }
+    const gift = await Gift.findOne({ _id: giftId, event: eventId });
+    if (!gift) {
+      return res.status(404).send('Gift was not found for this event');
+    }
+    const guest = await Guest.findOne({ _id: guestId, event: eventId });
+    if (!guest) {
+      return res.status(404).send('Guest was not found for this event');
+    }
+    gift.claimedBy = guestId;
+    gift.claimed = true;
+    await gift.save();
+    res.status(204).send();
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+router.delete('/events/:eventId/gifts/:giftId', async (req, res) => {
+  const { eventId, giftId } = req.params;
+  try {
+    const event = await Event.findById(eventId);
+    if (!event) {
+      return res.status(404).send('Event was not found');
+    }
+    const gift = await Gift.findOneAndDelete({
+      _id: giftId,
+      event: eventId,
+    });
+    if (!gift) {
+      return res.status(404).send('Gift was not found for this event');
+    }
+    res.status(204).send();
   } catch (error) {
     res.status(400).send(error);
   }

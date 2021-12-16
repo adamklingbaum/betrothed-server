@@ -41,5 +41,11 @@ const guestSchema = new mongoose.Schema({
   },
 });
 
+guestSchema.virtual('gifts', {
+  ref: 'Gift',
+  localField: '_id',
+  foreignField: 'guest',
+});
+
 module.exports.Guest = mongoose.model('Guest', guestSchema);
 module.exports.guestSchema = guestSchema;
