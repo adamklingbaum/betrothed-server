@@ -97,4 +97,10 @@ eventSchema.virtual('guests', {
   foreignField: 'event',
 });
 
+eventSchema.virtual('gifts', {
+  ref: 'Gift',
+  localField: '_id',
+  foreignField: 'event',
+});
+
 module.exports.Event = mongoose.model('Event', eventSchema);
