@@ -380,9 +380,9 @@ Creates a gift for an event's registry
 ```json
 {
   "createdGift": {
-    "name": "Test",
+    "name": "Insignia Air Fryer",
     "url": "https://www.bestbuy.ca/en-ca/product/insignia-air-fryer-4-8l-stainless-steel-only-at-best-buy/15596242",
-    "metaData": "Test",
+    "metaData": "Insignia Air Fryer - 4.8L - Stainless Steel - Only at Best Buy3",
     "claimed": false,
     "event": "61b79b9e0ac02dbe3e12fd1b",
     "_id": "61ba95a7a971b1106740f484",
