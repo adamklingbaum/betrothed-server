@@ -455,5 +455,5 @@ Deletes a gift from the registry
 
 | Parameter | Type   | Required | Default | Description                        |
 | :-------- | :----- | :------- | :------ | ---------------------------------- |
-| `eventId` | string | yes      | none    | id of the event you are retrieving |
-| `giftId`  | string | yes      | none    | id of the gift you are updating    |
+| `eventId` | string | yes      | none    | id of the event you are referencing |
+| `giftId`  | string | yes      | none    | id of the gift you are deleting    |
