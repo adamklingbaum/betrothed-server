@@ -1,4 +1,4 @@
-# betrothed API
+# Betrothed Service & API
 
 _View example requests in Postman_
 
